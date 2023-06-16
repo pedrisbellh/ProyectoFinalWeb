@@ -2,21 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Recurso;
-use Livewire\Livewire;
-use Illuminate\Http\Request;
+use Livewire\Component;
 
-class Recursos extends Component
+class Sobrante extends Component
 {
     public $recursos, $categoria, $cantidad, $disponibilidad;
     public $modal = false;
-    public $ruta = '/sobrantes';
 
     public function render()
     {
-        $this->recursos = Recurso::where('disponibilidad', 'disponible')->get();
-        return view('livewire.recursos');
+        $this->recursos = Recurso::where('disponibilidad', 'sobrante')->get();
+        return view('livewire.sobrante');
     }
 
     public function crear()
@@ -77,19 +74,5 @@ class Recursos extends Component
 
         $this->cerrarModal();
         $this->limpiarcampos();
-    }
-
-
-    public function sobrantes(){
-
-        return redirect()->to($this->ruta);
-
-    }
-
-    public function store(Request $request){
-        $request->validate([
-            'categoria' =>'required|string',
-            'cantidad' =>'required|numeric',
-        ]);
     }
 }

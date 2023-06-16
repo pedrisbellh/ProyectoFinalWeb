@@ -3,16 +3,21 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Users extends Component
 {
-    public $users, $name, $email;
+    public $users;
+    public $name;
+    public $email;
+    public $password;
+    public $rol;
     public $modal = false;
 
     public function render()
     {
-        $this->users = User::all();
+        $this->users = User::where('id', '<>', 1)->get();
         return view('livewire.users');
     }
 
@@ -40,15 +45,6 @@ class Users extends Component
 
     }
 
-    public function modificar($id)
-    {
-        $user = User::findOrFail($id);
-        $this->id = $id;
-        $this->name = $user->name;
-
-        $this->abrirModal();
-    }
-
     public function borrar($id)
     {
         User::find($id)->delete();
@@ -57,13 +53,17 @@ class Users extends Component
 
     public function guardar()
     {
-        User::updateOrCreate(['id'=> $this->id_user],
-        [
+        if(!$this->rol){
+            $this->rol = 'asistente';
+        }
+        User::create([
             'name' => $this->name,
-            'email' => $this->email
+            'email' => $this->email,
+            'rol' => $this->rol,
+            'password' => Hash::make($this->password),
         ]);
 
-        session()->flash('message', $this->id_user ? '¡Actualización exitosa!' : '¡Alta exitosa!');
+        session()->flash('message', $this->id ? '¡Usuario insertado correctamente!' : '¡Usuario actualizado correctamente!');
 
         $this->cerrarModal();
         $this->limpiarcampos();

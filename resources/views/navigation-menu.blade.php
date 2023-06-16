@@ -9,12 +9,28 @@
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @if (auth()->user()->rol === 'vicedecano')
+                        <x-nav-link href="{{ route('administrar.usuarios') }}" :active="request()->routeIs('administrar.usuarios')">
+                            {{ __('Administración') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->rol === 'asistente')
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link href="{{ route('recursos.disponibles') }}" :active="request()->routeIs('recursos.disponibles')">
+                                {{ __('Recursos Disponibles') }}
+                            </x-nav-link>
+                        </div>
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link href="{{ route('recursos.sobrantes') }}" :active="request()->routeIs('recursos.sobrantes')">
+                                {{ __('Recursos Sobrantes') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+
                 </div>
             </div>
 

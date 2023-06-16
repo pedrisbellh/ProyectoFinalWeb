@@ -53,18 +53,18 @@
 
         <div class="flex items-center mt-5">
             <x-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Cerrar sesión de otras sesiones del navegador') }}
+                {{ __('Cerrar otras sesiones') }}
             </x-button>
 
             <x-action-message class="ml-3" on="loggedOut">
-                {{ __('hecho') }}
+                {{ __('Hecho') }}
             </x-action-message>
         </div>
 
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                {{ __('Cerrar sesión de otras sesiones del navegador') }}
+                {{ __('Cerrar las sesiones en otros navegadores') }}
             </x-slot>
 
             <x-slot name="content">
@@ -90,7 +90,7 @@
                 <x-button class="ml-3"
                             wire:click="logoutOtherBrowserSessions"
                             wire:loading.attr="disabled">
-                    {{ __('Cerrar sesión de otras sesiones del navegador') }}
+                    {{ __('Cerra otras sesiones') }}
                 </x-button>
             </x-slot>
         </x-dialog-modal>

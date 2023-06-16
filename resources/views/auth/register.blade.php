@@ -23,9 +23,8 @@
                 <x-label for="rol" value="{{ __('Rol') }}" />
                 <select id="rol" class="block mt-1 w-full" name="rol" :value="old('rol')" required autofocus autocomplete="rol" >
                     <option value="Seleccione una opcion" disabled default>Seleccione una opción</option>
-                    <option value="Vicedecano">Vicedecano de Administración</option>
-                    <option value="Asistente">Asistente de Control</option>
-                    <option value="Secretaria">Secretaria Docente</option>
+                    <option value="asistente">Asistente de Control</option>
+                    {{-- <option value="vicedecano">Vicedecano de Administración</option> --}}
                 </select>
             </div>
 
@@ -39,30 +38,13 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
-                </div>
-            @endif
-
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                     {{ __('Ya registrado') }}
                 </a>
 
-                <x-button class="ml-4">
-                    {{ __('Registrar') }}
+                <x-button class="ml-4 mt-4 mb-4">
+                    {{ __('Aceptar') }}
                 </x-button>
             </div>
         </form>

@@ -17,7 +17,9 @@ class RecursoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-        ];
+            'categoria' => $this->faker->categoria(),
+            'cantidad' => $this->faker->cantidad(),
+            'disponibilidad' => $this->faker->disponibilidad(),
+      ];
     }
 }

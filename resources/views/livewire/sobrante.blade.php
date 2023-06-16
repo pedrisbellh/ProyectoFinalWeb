@@ -1,10 +1,7 @@
 <x-slot name="header">
-    <div class="flex justify-between">
-        <h1 class="text-gray-500">
-                Gestion de Recursos Disponibles
-        </h1>
-
-    </div>
+    <h1 class="text-gray-500">
+            Gestion de Recursos Sobrantes
+    </h1>
 </x-slot>
 <div class="pv-12">
     <div class="max-w-7x1 mx-auto sm:px6 lg:px-8">
@@ -20,11 +17,11 @@
                 </div>
             @endif
 
-            <a href="{{ route('recursos.acta') }}">
+
+            {{-- <a href="{{ route('recursos.acta') }}">
                 <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
                     Exportar acta
-                </button>
-            </a>
+                </button> --}}
 
             <button wire:click="crear()" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
                 Insertar
@@ -55,7 +52,6 @@
                     <button wire:click="editar({{ $recurso->id }})" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Editar</button>
                     <button wire:click="borrar({{ $recurso->id }})" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Borrar</button>
                 </td>
-
             </tr>
             @endforeach
         </tbody>
@@ -63,9 +59,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-

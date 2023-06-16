@@ -17,13 +17,16 @@
                 </div>
             @endif
 
+            <a href="{{ route('imprimir') }}">
+                <x-secondary-button>Exportar vale</x-secondary-button>
+            </a>
 
-            <button wire:click="insertar()" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+            {{-- <button wire:click="insertar()" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
                 Insertar
             </button>
             @if($modal)
-                @include('auth.register')
-            @endif
+                @include('livewire.registrar')
+            @endif --}}
 
 
     <table class="table-fixed w-full">
@@ -32,27 +35,26 @@
                 <th class= "px-4 py-2 ">ID</th>
                 <th  class= "px-4 py-2 ">Nombre</th>
                 <th class= "px-4 py-2 ">Correo</th>
+                <th class= "px-4 py-2 ">Rol</th>
                 <th class= "px-4 py-2 ">Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($users as $user)
             <tr>
-                <td class= "border px-4 py-2 ">{{ $user->id }}</td>
+                <td class= "border px-4 py-2 ">{{ $loop->iteration }}</td>
                 <td class= "border px-4 py-2 ">{{ $user->name }}</td>
                 <td class= "border px-4 py-2 ">{{ $user->email }}</td>
-                <td class= "border px-4 py-2 ">
-                    <button wire:click="modificar({{ $user->id }})" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Editar</button>
-                    <button wire:click="borrar({{ $user->id }})" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Borrar</button>
+                <td class= "border px-4 py-2 ">{{ $user->rol }}</td>
+                <td class="border px-4 py-2 ">
+                    <button wire:click="borrar({{ $user->id }})" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Eliminar</button>
                 </td>
-
             </tr>
             @endforeach
         </tbody>
     </table>
-        </div>
-    </div>
 </div>
-
+</div>
+</div>
 
 
