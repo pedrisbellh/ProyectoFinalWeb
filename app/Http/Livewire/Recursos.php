@@ -12,6 +12,11 @@ class Recursos extends Component
     public $recursos, $categoria, $cantidad, $disponibilidad;
     public $modal = false;
     public $ruta = '/sobrantes';
+    public $rules = [
+        'categoria' => 'required',
+        'cantidad' => 'required|numeric',
+        'disponibilidad' => 'required',
+    ];
 
     public function render()
     {
@@ -36,7 +41,7 @@ class Recursos extends Component
         $this->modal = false;
     }
 
-    public function limpiarcampos()
+    public function limpiarCampos()
     {
         $this->categoria = '';
         $this->cantidad = '';
@@ -65,12 +70,16 @@ class Recursos extends Component
     public function guardar()
     {
 
+        $this->validate();
+
         Recurso::updateOrCreate(['id'=> $this->id],
         [
             'categoria' => $this->categoria,
             'cantidad' => $this->cantidad,
             'disponibilidad' => $this->disponibilidad
         ]);
+
+
 
 
         session()->flash('message', $this->id ? '¡Recurso insertado correctamente!' : '¡Recurso actualizado correctamente!');
@@ -88,7 +97,7 @@ class Recursos extends Component
 
     public function store(Request $request){
         $request->validate([
-            'categoria' =>'required|string',
+            'categoria' =>'required|string|exists:recursos,categoria',
             'cantidad' =>'required|numeric',
         ]);
     }

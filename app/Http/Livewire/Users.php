@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class Users extends Component
 {
@@ -14,6 +15,11 @@ class Users extends Component
     public $password;
     public $rol;
     public $modal = false;
+    public $rules = [
+        'name'=>'required|max:8',
+        'email'=>'required',
+        'password'=>'required|min:8',
+    ];
 
     public function render()
     {
@@ -38,7 +44,7 @@ class Users extends Component
         $this->modal = false;
     }
 
-    public function limpiarcampos()
+    public function limpiarCampos()
     {
         $this->name = '';
         $this->id = '';
@@ -53,9 +59,8 @@ class Users extends Component
 
     public function guardar()
     {
-        if(!$this->rol){
-            $this->rol = 'asistente';
-        }
+        $this->validate();
+
         User::create([
             'name' => $this->name,
             'email' => $this->email,
@@ -68,4 +73,7 @@ class Users extends Component
         $this->cerrarModal();
         $this->limpiarcampos();
     }
+
+
 }
+

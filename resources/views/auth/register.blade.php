@@ -22,9 +22,9 @@
             <div class="mt-4">
                 <x-label for="rol" value="{{ __('Rol') }}" />
                 <select id="rol" class="block mt-1 w-full" name="rol" :value="old('rol')" required autofocus autocomplete="rol" >
-                    <option value="Seleccione una opcion" disabled default>Seleccione una opción</option>
+                    <option value="">Seleccione una opción</option>
                     <option value="asistente">Asistente de Control</option>
-                    {{-- <option value="vicedecano">Vicedecano de Administración</option> --}}
+                    <option value="vicedecano">Vicedecano de Administración</option>
                 </select>
             </div>
 

@@ -9,6 +9,11 @@ class Sobrante extends Component
 {
     public $recursos, $categoria, $cantidad, $disponibilidad;
     public $modal = false;
+    public $rules = [
+        'categoria' => 'required',
+        'cantidad' => 'required|numeric',
+        'disponibilidad' => 'required',
+    ];
 
     public function render()
     {
@@ -61,7 +66,7 @@ class Sobrante extends Component
 
     public function guardar()
     {
-
+        $this->validate();
         Recurso::updateOrCreate(['id'=> $this->id],
         [
             'categoria' => $this->categoria,
